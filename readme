@@ -1,0 +1,45 @@
+_____AVISO DO BRENO: README FEITO COMPLETAMENTE PELO GEMINI PARA POUPAR TEMPO POR ENQUANTO DPS A GENTE ARRUMA ISSO
+
+
+# 🚀 Sistema de Gestão e Controle de Equipes Corporativas
+
+Este é um sistema corporativo focado em gestão, controle e atribuição de tarefas dentro de equipes. O projeto utiliza uma arquitetura baseada no padrão **MVC (Model-View-Controller)** adaptada para máxima produtividade, rodando totalmente em ambiente isolado via **Docker**.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* **PHP 8.2** (Com extensões PDO e PDO_MYSQL)
+* **MySQL 8.0** (Engine InnoDB para integridade de Chaves Estrangeiras)
+* **Docker & Docker Compose** (Infraestrutura como Código)
+* **Bootstrap 5** (Interface responsiva e tema corporativo via CDN)
+
+---
+
+## 📁 Estrutura de Pastas do Projeto
+
+Para mantermos o código limpo, padronizado e sem conflitos, o projeto segue a seguinte estrutura de diretórios. **Por favor, siga esta organização ao criar novos arquivos:**
+
+```text
+trabalho_final/
+│
+├── config/
+│   └── conexao.php         # Arquivo global de conexão PDO com o MySQL (Host: 'db')
+│
+├── docker/
+│   └── database.sql        # Script de criação do banco e tabelas relacionais
+│
+├── public/                 # Arquivos públicos acessíveis pelo navegador
+│   ├── cadastro.php        # Tela e lógica de criação de contas (Senha em Hash)
+│   ├── login.php           # Tela e lógica de autenticação e início de sessão
+│   ├── escolher_equipe.php # Próxima tela (Filtro para usuários com nível 'neutro')
+│   └── index.php           # Página de teste inicial da conexão
+│
+├── src/                    # Coração do padrão MVC (Lógica interna do sistema)
+│   ├── Controllers/        # Controladores (Regras de negócio e processamento)
+│   ├── Models/             # Modelos (Consultas diretas e manipulação do Banco de Dados)
+│   │   └── User.php        # Métodos de consulta da tabela de usuários
+│   └── Views/              # Telas internas do sistema (Dashboard, tarefas, etc.)
+│
+├── Dockerfile              # Configuração da imagem customizada do PHP com drivers embutidos
+└── docker-compose.yml      # Orquestrador dos containers (Web e Banco de Dados)
