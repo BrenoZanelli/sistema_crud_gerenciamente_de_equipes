@@ -2,14 +2,15 @@ version: '3.8'
 
 services:
   web:
-    image: php:8.2-apache
+    build: .
     container_name: web_sistema_equipes
     ports:
       - "8080:80"
     volumes:
       - ./:/var/www/html
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - rede-sistema
 
@@ -29,6 +30,11 @@ services:
       - ./docker/database.sql:/docker-entrypoint-initdb.d/database.sql
     networks:
       - rede-sistema
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "dev_user", "-pdev_password"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 networks:
   rede-sistema:
